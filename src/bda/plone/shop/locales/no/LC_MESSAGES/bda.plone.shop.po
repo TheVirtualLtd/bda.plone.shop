@@ -206,7 +206,7 @@ msgid "default_shipping"
 msgstr ""
 
 #. Default: "Delivery Address"
-#: ./user/userdata.py:35
+#: ./user/userdata.py:29
 msgid "delivery_address"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgid "gross"
 msgstr "Brutto"
 
 #. Default: "Tick this box to indicate that you have found, read and accepted the terms of use for this site."
-#: ./user/userdata.py:163
+#: ./user/userdata.py:175
 msgid "help_accept"
 msgstr ""
 
@@ -330,11 +330,11 @@ msgstr ""
 msgid "help_available_shipping_methods"
 msgstr ""
 
-#: ./user/userdata.py:94
+#: ./user/userdata.py:89
 msgid "help_city"
 msgstr ""
 
-#: ./user/userdata.py:75
+#: ./user/userdata.py:70
 msgid "help_company"
 msgstr ""
 
@@ -368,7 +368,7 @@ msgid "help_disable_max_article"
 msgstr ""
 
 #. Default: "Fill in your given name."
-#: ./user/userdata.py:55
+#: ./user/userdata.py:50
 msgid "help_firstname"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "help_free_shipping_limit"
 msgstr ""
 
-#: ./user/userdata.py:48
+#: ./user/userdata.py:43
 msgid "help_gender"
 msgstr ""
 
@@ -409,7 +409,7 @@ msgid "help_item_shipping_cost"
 msgstr ""
 
 #. Default: "Fill in your surname or your family name."
-#: ./user/userdata.py:62
+#: ./user/userdata.py:57
 msgid "help_lastname"
 msgstr ""
 
@@ -423,7 +423,7 @@ msgstr ""
 msgid "help_payment_method"
 msgstr ""
 
-#: ./user/userdata.py:69
+#: ./user/userdata.py:64
 msgid "help_phone"
 msgstr ""
 
@@ -465,7 +465,11 @@ msgstr ""
 msgid "help_show_to_cart"
 msgstr ""
 
-#: ./user/userdata.py:82
+#: ./user/userdata.py:95
+msgid "help_state"
+msgstr ""
+
+#: ./user/userdata.py:77
 msgid "help_street"
 msgstr ""
 
@@ -479,7 +483,7 @@ msgstr ""
 msgid "help_vat"
 msgstr ""
 
-#: ./user/userdata.py:88
+#: ./user/userdata.py:83
 msgid "help_zip"
 msgstr ""
 
@@ -504,7 +508,7 @@ msgid "kilo"
 msgstr ""
 
 #. Default: "Accept terms of use"
-#: ./user/userdata.py:162
+#: ./user/userdata.py:174
 msgid "label_accept"
 msgstr ""
 
@@ -556,12 +560,12 @@ msgid "label_cash_on_delivery_costs"
 msgstr ""
 
 #. Default: "City"
-#: ./user/userdata.py:93
+#: ./user/userdata.py:88
 msgid "label_city"
 msgstr ""
 
 #. Default: "Company"
-#: ./user/userdata.py:74
+#: ./user/userdata.py:69
 msgid "label_company"
 msgstr ""
 
@@ -621,7 +625,7 @@ msgid "label_disable_max_article"
 msgstr ""
 
 #. Default: "First name"
-#: ./user/userdata.py:54
+#: ./user/userdata.py:49
 msgid "label_firstname"
 msgstr ""
 
@@ -636,7 +640,7 @@ msgid "label_free_shipping_limit"
 msgstr ""
 
 #. Default: "Gender"
-#: ./user/userdata.py:47
+#: ./user/userdata.py:42
 msgid "label_gender"
 msgstr ""
 
@@ -753,7 +757,7 @@ msgid "label_item_vat"
 msgstr "moms (i prosent)"
 
 #. Default: "Last name"
-#: ./user/userdata.py:61
+#: ./user/userdata.py:56
 msgid "label_lastname"
 msgstr ""
 
@@ -773,7 +777,7 @@ msgid "label_payment_text"
 msgstr ""
 
 #. Default: "Phone"
-#: ./user/userdata.py:68
+#: ./user/userdata.py:63
 msgid "label_phone"
 msgstr ""
 
@@ -849,8 +853,13 @@ msgstr ""
 msgid "label_skip_payment_if_order_contains_reservations"
 msgstr ""
 
+#. Default: "State"
+#: ./user/userdata.py:94
+msgid "label_state"
+msgstr ""
+
 #. Default: "Street"
-#: ./user/userdata.py:81
+#: ./user/userdata.py:76
 msgid "label_street"
 msgstr ""
 
@@ -865,7 +874,7 @@ msgid "label_vat"
 msgstr ""
 
 #. Default: "Postal Code"
-#: ./user/userdata.py:87
+#: ./user/userdata.py:82
 msgid "label_zip"
 msgstr ""
 
@@ -875,7 +884,7 @@ msgid "language"
 msgstr ""
 
 #. Default: "Legal"
-#: ./user/userdata.py:42
+#: ./user/userdata.py:37
 msgid "legal"
 msgstr ""
 
@@ -890,7 +899,7 @@ msgid "mailtemplates"
 msgstr ""
 
 #. Default: "Main Address"
-#: ./user/userdata.py:29
+#: ./user/userdata.py:23
 msgid "main_address"
 msgstr ""
 

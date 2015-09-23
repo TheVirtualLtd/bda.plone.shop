@@ -41,7 +41,7 @@
     <value key="shipping_method" purge="false">default_shipping</value>
     <value key="shipping_vat" purge="false">20</value>
     <value key="shipping_limit_from_gross" purge="false">True</value>
-    <value key="free_shipping_limit" purge="false">200.0</value>
+    <value key="free_shipping_limit" purge="false">0.0</value>
     <value key="flat_shipping_cost" purge="false">10.0</value>
     <value key="item_shipping_cost" purge="false">0.0</value>
   </records>
@@ -54,7 +54,7 @@
       <element>20</element>
       <element>25</element>
     </value>
-    <value key="default_item_vat" purge="false">20</value>
+    <value key="default_item_vat" purge="false">15</value>
   </records>
 
   <records interface="bda.plone.shop.interfaces.INotificationTextSettings">
@@ -72,6 +72,7 @@
       <element>debit_order</element>
       <element>invoice</element>
       <element>six_payment</element>
+      <element>pxpay_payment</element>
     </value>
     <value key="payment_method" purge="false">invoice</value>
     <value key="skip_payment_if_order_contains_reservations" purge="false">False</value>

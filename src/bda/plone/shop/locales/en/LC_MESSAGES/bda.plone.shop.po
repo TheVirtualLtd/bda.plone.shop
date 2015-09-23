@@ -204,7 +204,7 @@ msgid "default_shipping"
 msgstr "Default Shipping"
 
 #. Default: "Delivery Address"
-#: ./user/userdata.py:35
+#: ./user/userdata.py:29
 msgid "delivery_address"
 msgstr "Delivery Address"
 
@@ -299,7 +299,7 @@ msgid "gross"
 msgstr "Gross"
 
 #. Default: "Tick this box to indicate that you have found, read and accepted the terms of use for this site."
-#: ./user/userdata.py:163
+#: ./user/userdata.py:175
 msgid "help_accept"
 msgstr "Tick this box to indicate that you have found, read and accepted the terms of use for this site."
 
@@ -328,11 +328,11 @@ msgstr "Available payment methods in checkout"
 msgid "help_available_shipping_methods"
 msgstr "Available shipping methods in checkout"
 
-#: ./user/userdata.py:94
+#: ./user/userdata.py:89
 msgid "help_city"
 msgstr ""
 
-#: ./user/userdata.py:75
+#: ./user/userdata.py:70
 msgid "help_company"
 msgstr ""
 
@@ -366,7 +366,7 @@ msgid "help_disable_max_article"
 msgstr "No total number of items in cart limit"
 
 #. Default: "Fill in your given name."
-#: ./user/userdata.py:55
+#: ./user/userdata.py:50
 msgid "help_firstname"
 msgstr "Fill in your given name."
 
@@ -380,7 +380,7 @@ msgstr "Net flat shipping cost"
 msgid "help_free_shipping_limit"
 msgstr "Do not add shipping costs to orders with price bigger than limit. If limit applies to gross or net purchase price depends on 'Calculate shipping limit from gross' setting"
 
-#: ./user/userdata.py:48
+#: ./user/userdata.py:43
 msgid "help_gender"
 msgstr ""
 
@@ -407,7 +407,7 @@ msgid "help_item_shipping_cost"
 msgstr "Net shipping cost per item in cart. If flat shipping cost set and item shipping cost below flat shipping cost, flat shipping cost is used"
 
 #. Default: "Fill in your surname or your family name."
-#: ./user/userdata.py:62
+#: ./user/userdata.py:57
 msgid "help_lastname"
 msgstr "Fill in your surname or your family name."
 
@@ -421,7 +421,7 @@ msgstr "Maximum number of articles in cart if disable max article flag set"
 msgid "help_payment_method"
 msgstr "Default payment method in checkout"
 
-#: ./user/userdata.py:69
+#: ./user/userdata.py:64
 msgid "help_phone"
 msgstr ""
 
@@ -463,7 +463,11 @@ msgstr "Show currency in cart"
 msgid "help_show_to_cart"
 msgstr "Show cart link"
 
-#: ./user/userdata.py:82
+#: ./user/userdata.py:95
+msgid "help_state"
+msgstr ""
+
+#: ./user/userdata.py:77
 msgid "help_street"
 msgstr ""
 
@@ -477,7 +481,7 @@ msgstr "Show only total value in cart summary"
 msgid "help_vat"
 msgstr "Specify all allowed vat settings"
 
-#: ./user/userdata.py:88
+#: ./user/userdata.py:83
 msgid "help_zip"
 msgstr ""
 
@@ -502,7 +506,7 @@ msgid "kilo"
 msgstr "Kilo"
 
 #. Default: "Accept terms of use"
-#: ./user/userdata.py:162
+#: ./user/userdata.py:174
 msgid "label_accept"
 msgstr "Accept terms of use"
 
@@ -554,12 +558,12 @@ msgid "label_cash_on_delivery_costs"
 msgstr "Cash on delivery costs in gross"
 
 #. Default: "City"
-#: ./user/userdata.py:93
+#: ./user/userdata.py:88
 msgid "label_city"
 msgstr "City"
 
 #. Default: "Company"
-#: ./user/userdata.py:74
+#: ./user/userdata.py:69
 msgid "label_company"
 msgstr "Company"
 
@@ -619,7 +623,7 @@ msgid "label_disable_max_article"
 msgstr "Disable max article"
 
 #. Default: "First name"
-#: ./user/userdata.py:54
+#: ./user/userdata.py:49
 msgid "label_firstname"
 msgstr "First name"
 
@@ -634,7 +638,7 @@ msgid "label_free_shipping_limit"
 msgstr "Free Shipping Limit"
 
 #. Default: "Gender"
-#: ./user/userdata.py:47
+#: ./user/userdata.py:42
 msgid "label_gender"
 msgstr "Gender"
 
@@ -751,7 +755,7 @@ msgid "label_item_vat"
 msgstr "Item VAT (in %)"
 
 #. Default: "Last name"
-#: ./user/userdata.py:61
+#: ./user/userdata.py:56
 msgid "label_lastname"
 msgstr "Last name"
 
@@ -771,7 +775,7 @@ msgid "label_payment_text"
 msgstr "Payment Texts"
 
 #. Default: "Phone"
-#: ./user/userdata.py:68
+#: ./user/userdata.py:63
 msgid "label_phone"
 msgstr "Phone"
 
@@ -847,8 +851,13 @@ msgstr "Default notification text for items in order confirmation mail if item o
 msgid "label_skip_payment_if_order_contains_reservations"
 msgstr "Skip Payment if order contains reservations"
 
+#. Default: "State"
+#: ./user/userdata.py:94
+msgid "label_state"
+msgstr ""
+
 #. Default: "Street"
-#: ./user/userdata.py:81
+#: ./user/userdata.py:76
 msgid "label_street"
 msgstr "Street"
 
@@ -863,7 +872,7 @@ msgid "label_vat"
 msgstr "VAT in %"
 
 #. Default: "Postal Code"
-#: ./user/userdata.py:87
+#: ./user/userdata.py:82
 msgid "label_zip"
 msgstr "Postal Code"
 
@@ -873,7 +882,7 @@ msgid "language"
 msgstr "Language"
 
 #. Default: "Legal"
-#: ./user/userdata.py:42
+#: ./user/userdata.py:37
 msgid "legal"
 msgstr "Legal"
 
@@ -888,7 +897,7 @@ msgid "mailtemplates"
 msgstr "Notification Templates"
 
 #. Default: "Main Address"
-#: ./user/userdata.py:29
+#: ./user/userdata.py:23
 msgid "main_address"
 msgstr "Main Address"
 

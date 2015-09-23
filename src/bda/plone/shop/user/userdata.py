@@ -22,15 +22,16 @@ class ICustomer(model.Schema):
 
     model.fieldset('main_address', _('main_address', u'Main Address'),
                    fields=['firstname', 'lastname', 'phone',
-                           'company', 'street', 'zip', 'city', 'country',
-                           'delivery_alternative_delivery'])
+                           'company', 'street', 'zip', 'city', 'region',
+                           'country', 'delivery_alternative_delivery'])
 
     model.fieldset('delivery_address',
                    _('delivery_address', u'Delivery Address'),
                    fields=['delivery_firstname', 'delivery_lastname',
-                           'delivery_company',
+                           'delivery_company', 'delivery_phone',
                            'delivery_street', 'delivery_zip',
-                           'delivery_city', 'delivery_country'])
+                           'delivery_city', 'delivery_region',
+                           'delivery_country'])
 
     model.fieldset('legal',
                    _('legal', u'Legal'),
@@ -89,6 +90,11 @@ class ICustomer(model.Schema):
         required=True,
     )
 
+    region = schema.TextLine(
+        title=_(u'label_region', default=u'Region'),
+        description=_(u'help_region', default=u''),
+    )
+
     country = schema.Choice(
         title=_(u'label_country', default=u'Country'),
         description=_(u'help_country', default=u''),
@@ -126,6 +132,12 @@ class ICustomer(model.Schema):
         required=False,
     )
 
+    delivery_phone = schema.TextLine(
+        title=_(u'label_phone', default=u'Phone'),
+        description=_(u'help_phone', default=u''),
+        required=False,
+    )
+
     delivery_street = schema.TextLine(
         title=_(u'label_street', default=u'Street'),
         description=_(u'help_street', default=u''),
@@ -149,6 +161,12 @@ class ICustomer(model.Schema):
         description=_(u'help_country', default=u''),
         required=False,
         vocabulary='bda.plone.shop.vocabularies.CountryVocabulary'
+    )
+
+    delivery_region = schema.TextLine(
+        title=_(u'label_region', default=u'Region'),
+        description=_(u'help_region', default=u''),
+        required=False,
     )
 
     # Terms and Conditions
@@ -178,8 +196,9 @@ class UserDataSchemaAdapter(AccountPanelSchemaAdapter):
         zip = self._getProperty('zip')
         city = self._getProperty('city')
         country = self._getProperty('country')
+        region = self._getProperty('region') or ''
         country = country and get_pycountry_name(country) or ''
-        join_list = [street, '{0} {1}'.format(zip, city), country]
+        join_list = [street, '{0} {1}'.format(zip, city), region, country]
         return ', '.join([it for it in join_list if it])
 
 
