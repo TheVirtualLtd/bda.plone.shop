@@ -1,5 +1,3 @@
-from bda.plone.cart.interfaces import ICartItem
-from bda.plone.discount.interfaces import IDiscountSettingsEnabled
 from bda.plone.orders.interfaces import IGlobalNotificationText
 from bda.plone.orders.interfaces import IItemNotificationText
 from bda.plone.orders.interfaces import IOrdersExtensionLayer
@@ -14,6 +12,13 @@ from zope.interface import Interface
 from zope.interface import Attribute
 from zope.interface import provider
 
+import zope.deferredimport
+
+zope.deferredimport.deprecated(
+    "Import from bda.plone.orders.interfaces instead",
+    IBuyable='bda.plone.orders:interfaces.IBuyable'
+)
+
 
 class IShopExtensionLayer(IOrdersExtensionLayer):
     """Browser layer for bda.plone.shop
@@ -24,13 +29,6 @@ class IPotentiallyBuyable(Interface):
     """Mark item as potentially buyable.
 
     Considered for providing action in UI.
-    """
-
-
-class IBuyable(ICartItem, IDiscountSettingsEnabled):
-    """Marker for buyable item.
-
-    Item is buyable.
     """
 
 
@@ -97,10 +95,13 @@ class IShopSettings(model.Schema):
     )
 
     show_currency = schema.Choice(
-        title=_(u"label_show_currency", default=u"Show the currency for items"),
+        title=_(
+            u"label_show_currency",
+            default=u"Show the currency for items"
+        ),
         description=_(u"help_show_currency", default=u""),
-        vocabulary=
-            'bda.plone.shop.vocabularies.CurrencyDisplayOptionsVocabulary'
+        vocabulary='bda.plone.shop.vocabularies.'
+                   'CurrencyDisplayOptionsVocabulary'
     )
 
 
@@ -199,6 +200,7 @@ class IShopArticleSettings(model.Schema):
             'default_item_comment_enabled',
             'default_item_comment_required',
             'default_item_quantity_unit_float',
+            'default_item_cart_count_limit',
         ],
     )
 
@@ -215,8 +217,8 @@ class IShopArticleSettings(model.Schema):
         required=True,
         missing_value=set(),
         value_type=schema.Choice(
-            vocabulary=
-                'bda.plone.shop.vocabularies.AvailableQuantityUnitVocabulary'
+            vocabulary='bda.plone.shop.vocabularies.'
+                       'AvailableQuantityUnitVocabulary'
         )
     )
 
@@ -264,6 +266,14 @@ class IShopArticleSettings(model.Schema):
         required=False
     )
 
+    default_item_cart_count_limit = schema.Float(
+        title=_(
+            u'label_default_item_cart_count_limit',
+            default='Quantity limit of an item in the cart.'
+        ),
+        required=False
+    )
+
 
 @provider(IShopSettingsProvider)
 class IShopShippingSettings(model.Schema):
@@ -302,8 +312,8 @@ class IShopShippingSettings(model.Schema):
         required=True,
         min_length=1,
         value_type=schema.Choice(
-            vocabulary=
-                'bda.plone.shop.vocabularies.AvailableShippingMethodsVocabulary'
+            vocabulary='bda.plone.shop.vocabularies.'
+                       'AvailableShippingMethodsVocabulary'
         )
     )
 
@@ -312,8 +322,8 @@ class IShopShippingSettings(model.Schema):
                 default=u"Shipping Method"),
         description=_(u"help_shipping_method",
                       default=u"Default shipping method in checkout"),
-        vocabulary=
-            'bda.plone.shop.vocabularies.ShippingMethodsVocabulary'
+        vocabulary='bda.plone.shop.vocabularies.'
+                   'ShippingMethodsVocabulary'
     )
 
     shipping_vat = schema.Choice(
@@ -531,8 +541,8 @@ class IPaymentTextSettings(model.Schema):
         required=True,
         min_length=1,
         value_type=schema.Choice(
-            vocabulary=
-                'bda.plone.shop.vocabularies.AvailablePaymentMethodsVocabulary'
+            vocabulary='bda.plone.shop.vocabularies.'
+                       'AvailablePaymentMethodsVocabulary'
         )
     )
 
@@ -541,8 +551,8 @@ class IPaymentTextSettings(model.Schema):
                 default=u"Payment Method"),
         description=_(u"help_payment_method",
                       default=u"Default payment method in checkout"),
-        vocabulary=
-            'bda.plone.shop.vocabularies.PaymentMethodsVocabulary'
+        vocabulary='bda.plone.shop.vocabularies.'
+                   'PaymentMethodsVocabulary'
     )
 
     skip_payment_if_order_contains_reservations = schema.Bool(

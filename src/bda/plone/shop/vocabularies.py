@@ -33,7 +33,11 @@ def AvailableQuantityUnitVocabulary(context):
 @provider(IVocabularyFactory)
 def QuantityUnitVocabulary(context):
     # vocab is used for buyable items
-    settings = get_shop_article_settings()
+    try:
+        settings = get_shop_article_settings()
+    except KeyError:
+        # happens GS profile application if registry entries not present yet
+        return AvailableQuantityUnitVocabulary(context)
     if not settings:
         return
     terms = []
@@ -48,6 +52,9 @@ def QuantityUnitVocabulary(context):
 # patch this vocab
 AVAILABLE_VAT_VALUES = {
     '0': '0%',
+    '2.5': '2,5%',
+    '3.8': '3,8%',
+    '8': '8%',
     '10': '10%',
     '15': '15%',
     '20': '20%',

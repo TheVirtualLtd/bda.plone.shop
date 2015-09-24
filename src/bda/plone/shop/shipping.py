@@ -1,8 +1,8 @@
+# -*- coding: utf-8 -*-
 from bda.plone.cart import cart_item_shippable
 from bda.plone.cart import CURRENCY_LITERALS
 from bda.plone.shipping import Shipping
 from bda.plone.shipping.interfaces import IShippingSettings
-from bda.plone.shipping.interfaces import IShippingItem
 from bda.plone.shop import message_factory as _
 from bda.plone.shop.cartdata import CartItemCalculator
 from bda.plone.shop.utils import format_amount
@@ -36,7 +36,7 @@ class ShippingSettings(object):
 
 class DefaultShipping(Shipping):
     sid = 'default_shipping'
-    label = _('default_shipping', 'Default Shipping')
+    label = _('default_shipping', default='Default Shipping')
 
     @property
     def description(self):
@@ -50,8 +50,10 @@ class DefaultShipping(Shipping):
         flat_shipping_cost = Decimal(str(settings.flat_shipping_cost))
         item_shipping_cost = Decimal(str(settings.item_shipping_cost))
         shipping_vat = Decimal(str(settings.shipping_vat))
+
         def gross(val):
             return format_amount(val + (val / Decimal(100) * shipping_vat))
+
         # no shipping costs
         if not flat_shipping_cost and not item_shipping_cost:
             return _(u"free_shipping", default=u"Free Shipping")
@@ -185,6 +187,22 @@ class DefaultShipping(Shipping):
         return self.net(items) / Decimal(100) * shipping_vat
 
 
+class CashAndCarryShipping(Shipping):
+    sid = 'cash_and_carry'
+    label = _('cash_and_carry', default='Cash and Carry')
+
+    @property
+    def description(self):
+        return _('cash_and_carry_descripton',
+                 default='Customer picks up goods at dealer\'s place')
+
+    def net(self, items):
+        return Decimal('0')
+
+    def vat(self, items):
+        return Decimal('0')
+
+
 ###############################################################################
 # B/C - will be removed in ``bda.plone.shop`` 1.0
 ###############################################################################
@@ -204,6 +222,9 @@ class FlatRate(Shipping):
         return Decimal(FLAT_SHIPPING_COST)
 
 
-deprecated('FlatRate', """``FlatRate`` shipping is deprecated as of
-``bda.plone.shop`` 0.7 and will be removed in ``bda.plone.shop`` 1.0. Use
-``DefaultShipping`` instead which provides the same functionality.""")
+deprecated(
+    'FlatRate',
+    "'FlatRate' shipping is deprecated as of 'bda.plone.shop' 0.7 and "
+    "will be removed in 'bda.plone.shop' 1.0. Use 'DefaultShipping' "
+    "instead which provides the same functionality."
+)

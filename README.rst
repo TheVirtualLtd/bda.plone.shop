@@ -14,7 +14,7 @@ control panel.
 ``bda.plone.shop`` won't work on stock Plone 4.3.x installations because it
 requires some packages in more recent versions:
 
-* ``plone.app.workflow`` >= 2.2.1
+* ``plone.app.workflow`` >= 2.1.8
 
 * ``plone.app.users`` >= 2.0.4
 
@@ -56,7 +56,7 @@ robot tests individually, like so (-d to start Zope in DEBUG-MODE)::
     ./bin/robot src/bda/plone/shop/tests/robot/test_shop_orderprocess.robot
 
 To automatically land in the debug shell on test-failure, use::
-    
+
     ./bin/robot-debug src/bda/plone/shop/tests/robot/test_shop_orderprocess.robot
 
 In the robot test you can place the debug statement to access a robot shell to
@@ -70,7 +70,7 @@ Enable Content to be buyable
 ============================
 
 Content which represent buyable items must implement
-``bda.plone.shop.interfaces.IBuyable``.
+``bda.plone.orders.interfaces.IBuyable``.
 
 Information related to Buyable items is acquired from content instance via
 adapters implementing the following interfaces::
@@ -81,7 +81,7 @@ adapters implementing the following interfaces::
 - ``bda.plone.orders.interfaces.IItemNotificationText``
 - ``bda.plone.orders.interfaces.IGlobalNotificationText``
 - ``bda.plone.orders.interfaces.ITrading``
-- ``bda.plone.shop.interfaces.IBuyablePeriod``
+- ``bda.plone.orders.interfaces.IBuyablePeriod``
 
 There exists Archetypes and Dexterity related implementations of these
 adapters among with related Schema Extenders respective Dexterity Behaviors.
@@ -111,7 +111,7 @@ activation, set ``IBuyable`` interface directly on content class::
 
     <class zcml:condition="installed Products.Archetypes"
            class="Products.Archetypes.BaseObject.BaseObject">
-      <implements interface="bda.plone.shop.interfaces.IBuyable" />
+      <implements interface="bda.plone.orders.interfaces.IBuyable" />
     </class>
 
 Notification related schema extenders can be applied to any Archetypes object
@@ -337,3 +337,4 @@ Contributors
 - Espen Moe-Nilssen
 - Johannes Raggam
 - Jure Cerjak
+- Benjamin Stefaner (benniboy)

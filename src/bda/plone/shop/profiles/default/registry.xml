@@ -31,12 +31,14 @@
     <value key="default_item_comment_enabled" purge="false">True</value>
     <value key="default_item_comment_required" purge="false">False</value>
     <value key="default_item_quantity_unit_float" purge="false">False</value>
+    <value key="default_item_cart_count_limit" purge="false"></value>
   </records>
 
   <records interface="bda.plone.shop.interfaces.IShopShippingSettings">
     <value key="default_shipping_item_shippable" purge="false">True</value>
     <value key="available_shipping_methods" purge="false">
       <element>default_shipping</element>
+      <element>cash_and_carry</element>
     </value>
     <value key="shipping_method" purge="false">default_shipping</value>
     <value key="shipping_vat" purge="false">20</value>
@@ -49,6 +51,9 @@
   <records interface="bda.plone.shop.interfaces.IShopTaxSettings">
     <value key="vat" purge="false">
       <element>0</element>
+      <element>2.5</element>
+      <element>3.8</element>
+      <element>8</element>
       <element>10</element>
       <element>15</element>
       <element>20</element>

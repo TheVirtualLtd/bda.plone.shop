@@ -1,12 +1,15 @@
-from zope.container.interfaces import IContainer
-from zope.interface import directlyProvides
-from zope.interface import noLongerProvides
+# -*- coding: utf-8 -*-
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from bda.plone.orders.interfaces import IVendor
+from Products.statusmessages.interfaces import IStatusMessage
 from bda.plone.orders import permissions
-from bda.plone.shop.interfaces import IBuyable
-from bda.plone.shop.interfaces import IPotentiallyBuyable
+from bda.plone.orders.interfaces import IBuyable
+from bda.plone.orders.interfaces import IVendor
 from bda.plone.shop import message_factory as _
+from bda.plone.shop.interfaces import IPotentiallyBuyable
+from zope.container.interfaces import IContainer
+from zope.interface import alsoProvides
+from zope.interface import noLongerProvides
 
 
 class EnableDisableFeature(BrowserView):
@@ -16,20 +19,22 @@ class EnableDisableFeature(BrowserView):
     disable_message = None
 
     def enableFeature(self):
-        directlyProvides(self.context, self.feature_iface)
-        self.context.portal_catalog.reindexObject(self.context,
-                                                  idxs=['object_provides'],
-                                                  update_metadata=1)
-        self.context.plone_utils.addPortalMessage(self.enable_message)
-        self.request.response.redirect(self.context.absolute_url())
+        ctx = self.context
+        req = self.request
+        alsoProvides(ctx, self.feature_iface)
+        cat = getToolByName(ctx, 'portal_catalog')
+        cat.reindexObject(ctx, idxs=['object_provides'], update_metadata=1)
+        IStatusMessage(req).addStatusMessage(self.enable_message, 'info')
+        self.request.response.redirect(ctx.absolute_url())
 
     def disableFeature(self):
-        noLongerProvides(self.context, self.feature_iface)
-        self.context.portal_catalog.reindexObject(self.context,
-                                                  idxs=['object_provides'],
-                                                  update_metadata=1)
-        self.context.plone_utils.addPortalMessage(self.disable_message)
-        self.request.response.redirect(self.context.absolute_url())
+        ctx = self.context
+        req = self.request
+        noLongerProvides(ctx, self.feature_iface)
+        cat = getToolByName(ctx, 'portal_catalog')
+        cat.reindexObject(ctx, idxs=['object_provides'], update_metadata=1)
+        IStatusMessage(req).addStatusMessage(self.disable_message, 'info')
+        self.request.response.redirect(ctx.absolute_url())
 
     def isPossibleToEnableFeature(self):
         return self.potential_feature_iface.providedBy(self.context) \

@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from bda.plone.cart import CartItemDataProviderBase
 from bda.plone.cart import CartItemPreviewAdapterBase
 from bda.plone.cart.interfaces import ICartItemStock
+from bda.plone.orders.interfaces import IBuyable
 from bda.plone.orders.interfaces import ITrading
 from bda.plone.shipping.interfaces import IShippingItem
 from bda.plone.shop import message_factory as _
-from bda.plone.shop.interfaces import IBuyable
 from bda.plone.shop.interfaces import IBuyablePeriod
 from bda.plone.shop.mailnotify import BubbleGlobalNotificationText
 from bda.plone.shop.mailnotify import BubbleItemNotificationText
@@ -55,6 +56,11 @@ def default_item_quantity_unit_float(context):
 
 
 @provider(IContextAwareDefaultFactory)
+def default_item_cart_count_limit(context):
+    return get_shop_article_settings().default_item_cart_count_limit
+
+
+@provider(IContextAwareDefaultFactory)
 def default_item_quantity_unit(context):
     return get_shop_article_settings().default_item_quantity_unit
 
@@ -95,7 +101,8 @@ class IBuyableBehavior(model.Schema, IBuyable):
     item_cart_count_limit = schema.Float(
         title=_(u'label_item_cart_count_limit',
                 default=u'Max count of this item in cart'),
-        required=False
+        required=False,
+        defaultFactory=default_item_cart_count_limit
     )
 
     item_display_gross = schema.Bool(
@@ -227,21 +234,21 @@ class DXCartItemStock(object):
     def display(self):
         return self.context.item_display_stock
 
-    def _get_available(self):
+    @property
+    def available(self):
         return self.context.item_available
 
-    def _set_available(self, value):
+    @available.setter
+    def available(self, value):
         self.context.item_available = value
 
-    available = property(_get_available, _set_available)
-
-    def _get_overbook(self):
+    @property
+    def overbook(self):
         return self.context.item_overbook
 
-    def _set_overbook(self, value):
+    @overbook.setter
+    def overbook(self, value):
         self.context.item_overbook = value
-
-    overbook = property(_get_overbook, _set_overbook)
 
 
 @provider(IContextAwareDefaultFactory)

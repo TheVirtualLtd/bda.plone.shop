@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Products.Five import BrowserView
 from bda.plone.cart import get_data_provider
@@ -38,10 +39,10 @@ class BuyableControls(BrowserView, DataProviderMixin):
         if buyable_period:
             now = datetime.now()
             effective = buyable_period.effective
-            if effective and now < effective:
+            if effective and now <= effective:
                 return False
             expires = buyable_period.expires
-            if expires and now > expires:
+            if expires and now >= expires:
                 return False
         sm = getSecurityManager()
         return sm.checkPermission(permissions.BuyItems, self.context)
@@ -72,7 +73,10 @@ class BuyableControls(BrowserView, DataProviderMixin):
 
     @property
     def item_vat(self):
-        return Decimal(self._item_data.vat)
+        vat = self._item_data.vat
+        if vat % 2 != 0:
+            return Decimal(vat).quantize(Decimal('1.0'))
+        return Decimal(vat)
 
     @property
     def item_net_original(self):

@@ -1,4 +1,7 @@
-(function($) {
+/* jslint browser: true */
+/* global jQuery, bdajax */
+(function($, bdajax) {
+    "use strict";
 
     $(document).ready(function() {
         var binder = function(context) {
@@ -17,7 +20,7 @@
                 }
             });
         };
-        if (typeof(window.bdajax) !== "undefined") {
+        if (bdajax !== undefined) {
             $.extend(bdajax.binders, {
                 buyable_controls_binder: binder
             });
@@ -25,4 +28,4 @@
         binder(document);
     });
 
-})(jQuery);
+})(jQuery, bdajax);

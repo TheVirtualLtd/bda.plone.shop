@@ -1,10 +1,91 @@
 Changelog
 =========
 
-0.9.dev.0
----------
+0.10 (unreleased)
+-----------------
 
-- no changes yet.
+- Shop Portlet: Use appropriate context (Vendor, Site or Plone Site Root) also
+  for Orders and Bookings views.
+  [thet]
+
+- Shop Portlet: Use appropriate context for "orders in context", like it's done
+  for "bookings in context". Avoids calling this view on default pages.
+  [thet]
+
+- Shop Portlet: Add Shop Controlpanel admin link, linking to ISite or
+  IPloneSiteRoot. If lineage.registry is installed, the shop settings can also
+  be set on subsite level.
+  [thet]
+
+- Always show the mailtemplate link in the shop portlet, but link to the
+  correct context. Rename i18n messages to reflect, if context is on a IVendor
+  object (vendor), on a ISite (site-wide) or on a IPloneSiteRoot (global).
+  [thet]
+
+- Resolve JSHint errors and warnings.
+  [thet]
+
+- Fix: ``buyable_period`` was started one minute after the given time.
+  [jensens]
+
+- Separate AT and DX zcml registrations into own files for a better overview.
+  [thet]
+
+- Disable adapter for deprecated ``FlatRate`` shipping.
+  [jensens]
+
+- Change imports of IBuyable to bda.plone.orders - get rid of deprecation
+  messages
+  [jensens]
+
+- Added two views to the admin portlet in which bookings are displayed
+  and can be grouped by the buyers email adress or the buyable uid.
+  Both views support daterange filtering and text index support.
+  The ``Bookings`` view gets called on the portal root and the
+  ``Bookings in Context`` returns all bookings data on the corresponding
+  context it is called.
+  [benniboy]
+
+- Moved IBuyable to bda.plone.orders to avoid circular dependencies.
+  [benniboy]
+
+- Consider buyable effective and expires dates in availability details and
+  display appropriate messages.
+  [rnix]
+
+- Change userdata adapters to named adapters, so other adapters can
+  additionally extend the functionality.
+  [thet]
+
+- Added default_item_cart_count_limit to control panel defaults.
+  Don't forget to run the update step.
+  [agitator]
+
+- Display status messages when modifying cart data via buyable viewlet
+  [rnix]
+
+- Add swiss VAT rates
+  [rnix]
+
+- Do not show 'Export Orders on this Item' on Plone Site Root
+  [jensens]
+
+- Use Products.statusmessages for displaying portal status messages when
+  enabling or disabling Buyable or Vendor features.
+  [thet]
+
+
+0.9
+---
+
+- Add "Cash and Carry" shipping.
+  [rnix]
+
+- To enable and disable features on contexts (like vendor areas), don't use
+  ``directlyProvides`` and erase all other directly provided interfaces, but
+  use ``alsoProvides``. That's needed for collective.lineage sites to work
+  after a vendor area was activated on them.
+  [thet]
 
 
 0.8

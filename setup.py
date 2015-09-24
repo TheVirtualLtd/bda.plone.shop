@@ -3,7 +3,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = '0.9.dev0'
+version = '0.10.dev3'
 shortdesc = "Shop Solution for Plone"
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'CHANGES.rst')).read()
@@ -31,15 +31,18 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
-        'Plone',
         'archetypes.schemaextender',  # XXX: remove from install dependencies
+        'bda.plone.discount',
         'bda.plone.orders',
+        'collective.z3cform.datagridfield',
+        'Plone',
         'plone.api',
         'plone.app.registry',
-        'plone.app.users',
-        'collective.z3cform.datagridfield',
-        'bda.plone.discount',
+        'plone.app.users>=2.0',
+        'plone.app.workflow>=2.1.9',
+        'setuptools',
+        'zope.deferredimport',
+        'z3c.form>=3.2.4',  # Issue #55
     ],
     extras_require={
         'test': [
@@ -54,4 +57,4 @@ setup(
     [z3c.autoinclude.plugin]
     target = plone
     """,
-    )
+)
