@@ -3,6 +3,7 @@ from datetime import datetime
 from zope.i18n import translate
 from zope.component import queryAdapter
 from AccessControl import getSecurityManager
+from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
 from bda.plone.shipping.interfaces import IShippingItem
 from bda.plone.cart import remove_item_from_cart
@@ -13,6 +14,7 @@ from bda.plone.cart import get_item_state
 from bda.plone.cart import get_item_preview
 from bda.plone.cart import CartDataProviderBase
 from bda.plone.cart import CartItemStateBase
+from bda.plone.productshop.interfaces import IVariant
 from bda.plone.shop.interfaces import IBuyablePeriod
 from bda.plone.shop.utils import get_shop_settings
 from bda.plone.shop.utils import get_shop_cart_settings
@@ -260,6 +262,8 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             quantity_unit_float = data.quantity_unit_float
             quantity_unit = translate(data.quantity_unit, context=self.request)
             preview_image_url = get_item_preview(obj).url
+            if IVariant.providedBy(obj) and get_item_preview(obj).url == '':
+                preview_image_url = get_item_preview(aq_parent(obj)).url
             item_state = get_item_state(obj, self.request)
             no_longer_available = not item_state.validate_count(count)
             alert = item_state.alert(count)
