@@ -203,6 +203,23 @@ class CashAndCarryShipping(Shipping):
         return Decimal('0')
 
 
+class ShippingNotIncluded(Shipping):
+    sid = 'shipping_not_included'
+    label = _('shipping_not_included',
+              default='Shipping not included')
+
+    @property
+    def description(self):
+        return _('shipping_not_included',
+                 default='Shipping will be calculated separately')
+
+    def net(self, items):
+        return Decimal('0')
+
+    def vat(self, items):
+        return Decimal('0')
+
+
 ###############################################################################
 # B/C - will be removed in ``bda.plone.shop`` 1.0
 ###############################################################################

@@ -67,6 +67,10 @@
   <!-- cash and carry shipping -->
   <adapter name="cash_and_carry" factory=".shipping.CashAndCarryShipping" />
 
+  <!-- shipping calculated separately -->
+  <adapter name="shipping_not_included"
+      factory=".shipping.ShippingNotIncluded" />
+
   <!-- flat rate shipping (B/C, default shipping offers same functionality)
   <adapter name="flat_rate" factory=".shipping.FlatRate" />
   -->
