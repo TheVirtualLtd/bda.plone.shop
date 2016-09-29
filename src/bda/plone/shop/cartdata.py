@@ -157,6 +157,17 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
         # return default shipping method
         return settings.shipping_method
 
+    '''
+    # XXX should this be implemented instead of looking up surcharge from cart
+    # data directly
+    @property
+    def payment_surcharge_amount(self):
+        # EZFIXME - should query adapter
+        if self.include_payment_surcharge:
+            return self.data.get('surcharge_amount')
+        return ''
+    '''
+
     @property
     def checkout_url(self):
         return '%s/@@checkout' % self.context.absolute_url()

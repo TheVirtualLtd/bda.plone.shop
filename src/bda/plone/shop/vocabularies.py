@@ -168,3 +168,12 @@ def PaymentMethodsVocabulary(context):
         # happens GS profile application if registry entries not present yet
         return AvailablePaymentMethodsVocabulary(context)
     return SimpleVocabulary([SimpleTerm(value=k, title=v) for k, v in items])
+
+@provider(IVocabularyFactory)
+def SurchargeablePaymentMethodsVocabulary(context):
+    payments = Payments(context).payments
+    items = [(payment.pid, payment.label) for payment in payments]
+    return SimpleVocabulary([SimpleTerm(value=k, title=v) for k, v in items])
+
+
+

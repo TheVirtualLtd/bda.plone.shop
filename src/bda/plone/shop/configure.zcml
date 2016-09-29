@@ -57,6 +57,7 @@
   <!-- payment settings -->
   <adapter factory=".payment.PaymentSettings" />
   <adapter factory=".payment.CashOnDeliverySettings" />
+  <adapter factory=".payment.Surcharge" />
 
   <!-- shipping settings -->
   <adapter factory=".shipping.ShippingSettings" />
