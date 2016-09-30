@@ -53,4 +53,8 @@
     component=".vocabularies.PaymentMethodsVocabulary"
     name="bda.plone.shop.vocabularies.PaymentMethodsVocabulary" />
 
+  <utility
+    component=".vocabularies.SurchargeablePaymentMethodsVocabulary"
+    name="bda.plone.shop.vocabularies.SurchargeablePaymentMethodsVocabulary" />
+
 </configure>

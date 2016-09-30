@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="bda.plone.shop.interfaces.IPaymentTextSettings">
+    <value key="fixed_surcharge" purge="false">0.0</value>
+    <value key="percent_surcharge" purge="false">0.0</value>
+    <value key="surchargeable_payment_methods" purge="false">
+      <element>pxpay_payment</element>
+    </value>
+  </records>
+</registry>

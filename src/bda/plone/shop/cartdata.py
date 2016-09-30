@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
+from Acquisition import aq_parent
 from bda.plone.cart import CartDataProviderBase
 from bda.plone.cart import CartItemStateBase
 from bda.plone.cart import get_item_data_provider
@@ -7,6 +8,7 @@ from bda.plone.cart import get_item_preview
 from bda.plone.cart import get_item_state
 from bda.plone.cart import get_item_stock
 from bda.plone.cart import remove_item_from_cart
+from bda.plone.productshop.interfaces import IVariant
 from bda.plone.shipping.interfaces import IShippingItem
 from bda.plone.shop import message_factory as _
 from bda.plone.shop import permissions
@@ -155,6 +157,17 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
         # return default shipping method
         return settings.shipping_method
 
+    '''
+    # XXX should this be implemented instead of looking up surcharge from cart
+    # data directly
+    @property
+    def payment_surcharge_amount(self):
+        # EZFIXME - should query adapter
+        if self.include_payment_surcharge:
+            return self.data.get('surcharge_amount')
+        return ''
+    '''
+
     @property
     def checkout_url(self):
         return '%s/@@checkout' % self.context.absolute_url()
@@ -268,6 +281,8 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             quantity_unit_float = data.quantity_unit_float
             quantity_unit = translate(data.quantity_unit, context=self.request)
             preview_image_url = get_item_preview(obj).url
+            if IVariant.providedBy(obj) and get_item_preview(obj).url == '':
+                preview_image_url = get_item_preview(aq_parent(obj)).url
             item_state = get_item_state(obj, self.request)
             no_longer_available = not item_state.validate_count(count)
             alert = item_state.alert(count)

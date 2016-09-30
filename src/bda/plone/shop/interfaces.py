@@ -549,6 +549,9 @@ class IPaymentTextSettings(model.Schema):
             'skip_payment_if_order_contains_reservations',
             'payment_text',
             'cash_on_delivery_costs',
+            'percent_surcharge',
+            'fixed_surcharge',
+            'surchargeable_payment_methods',
         ],
     )
 
@@ -600,4 +603,37 @@ class IPaymentTextSettings(model.Schema):
             default=u'Cash on delivery costs in gross'
         ),
         required=False
+    )
+
+    fixed_surcharge = schema.Float(
+        title=_(
+            u'fixed_surcharge',
+            default=u'Fixed surcharge to be added to selected payment methods'
+        ),
+        required=False
+    )
+
+    percent_surcharge = schema.Float(
+        title=_(
+            u'percent_surcharge',
+            default=u'Percentage surcharge to be added to selected payment '
+                    u'methods'
+        ),
+        required=False
+    )
+
+    surchargeable_payment_methods = schema.List(
+        title=_(u"label_surchargeable_payment_methods",
+                default=u"Payment Methods to have surcharge added"),
+        description=_(u"help_surchareable_payment_methods",
+                      default=u"Payment methods selected here will have the "
+                              u"fixed and percentage surcharge amounts set "
+                              u"above added to the order total and displayed "
+                              u"in the cart"),
+        required=True,
+        min_length=1,
+        value_type=schema.Choice(
+            vocabulary='bda.plone.shop.vocabularies.'
+                       'SurchargeablePaymentMethodsVocabulary'
+        )
     )

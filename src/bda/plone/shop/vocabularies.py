@@ -147,7 +147,7 @@ def AvailableShippingMethodsVocabulary(context):
 def ShippingMethodsVocabulary(context):
     try:
         items = Shippings(context).vocab
-    except KeyError:
+    except (KeyError, TypeError):
         # happens GS profile application if registry entries not present yet
         return AvailableShippingMethodsVocabulary(context)
     return SimpleVocabulary([SimpleTerm(value=k, title=v) for k, v in items])
@@ -167,4 +167,10 @@ def PaymentMethodsVocabulary(context):
     except KeyError:
         # happens GS profile application if registry entries not present yet
         return AvailablePaymentMethodsVocabulary(context)
+    return SimpleVocabulary([SimpleTerm(value=k, title=v) for k, v in items])
+
+@provider(IVocabularyFactory)
+def SurchargeablePaymentMethodsVocabulary(context):
+    payments = Payments(context).payments
+    items = [(payment.pid, payment.label) for payment in payments]
     return SimpleVocabulary([SimpleTerm(value=k, title=v) for k, v in items])
