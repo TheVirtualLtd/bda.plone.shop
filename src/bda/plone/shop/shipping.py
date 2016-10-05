@@ -210,7 +210,7 @@ class ShippingNotIncluded(Shipping):
 
     @property
     def description(self):
-        return _('shipping_not_included',
+        return _('shipping_calculated_separately',
                  default='Shipping will be calculated separately')
 
     def net(self, items):
