@@ -6,5 +6,6 @@
     <value key="surchargeable_payment_methods" purge="false">
       <element>pxpay_payment</element>
     </value>
+    <value key="surcharge_vat" purge="false">15</value>
   </records>
 </registry>

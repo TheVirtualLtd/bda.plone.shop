@@ -113,7 +113,7 @@ class Surcharge(object):
         else:
             return ''
 
-    def surcharge(self, total):
+    def surcharge_net(self, working_total):
         try:
             settings = get_shop_payment_settings()
         except KeyError:
@@ -124,4 +124,16 @@ class Surcharge(object):
                  settings.fixed_surcharge else Decimal('0'))
         percent = (Decimal(str(settings.percent_surcharge)) if
                    settings.percent_surcharge else Decimal('0'))
-        return (total * percent) / Decimal('100') + fixed
+        return (working_total * percent) / Decimal('100') + fixed
+
+    def surcharge_vat(self, working_total):
+        try:
+            settings = get_shop_payment_settings()
+        except KeyError:
+            # happens GS profile application if registry entries not present
+            # yet
+            return Decimal('0')
+        surcharge_net = self.surcharge_net(working_total)
+        vat_percentage = (Decimal(str((settings.surcharge_vat))) if
+                          settings.surcharge_vat else Decimal('0'))
+        return (surcharge_net / Decimal(100)) * vat_percentage

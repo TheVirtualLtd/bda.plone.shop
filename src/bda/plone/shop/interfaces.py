@@ -552,6 +552,7 @@ class IPaymentTextSettings(model.Schema):
             'percent_surcharge',
             'fixed_surcharge',
             'surchargeable_payment_methods',
+            'surcharge_vat',
         ],
     )
 
@@ -636,4 +637,13 @@ class IPaymentTextSettings(model.Schema):
             vocabulary='bda.plone.shop.vocabularies.'
                        'SurchargeablePaymentMethodsVocabulary'
         )
+    )
+
+    surcharge_vat = schema.Choice(
+        title=_(u"label_surcharge_vat", default=u'Surcharge VAT'),
+        description=_(
+            u"help_surcharge_vat",
+            default=u"VAT used to calculate surcharge amount"
+        ),
+        vocabulary='bda.plone.shop.vocabularies.VatVocabulary'
     )
