@@ -325,7 +325,7 @@ msgstr "Flat Rate"
 #. Default: "Free Shipping"
 #: ./shipping.py:59
 msgid "free_shipping"
-msgstr "Free Shipping"
+msgstr "Shipping Included"
 
 #. Default: "Minimum ${flat} ${currency} or ${item} ${currency} per item in cart. Free shipping if gross purchase price above ${limit} ${currency}"
 #: ./shipping.py:93
